@@ -10,7 +10,7 @@ This project demonstrates API testing using Postman, providing a collection of t
 - Test scripts for checking results and validations
 
 ## API Documentation:
-- https://documenter.getpostman.com/view/19885870/2sAYX5M3Gi
+- https://documenter.getpostman.com/view/40139252/2sAYX9kzE3
   
 ### **Technology used:**
 - Postman
@@ -26,7 +26,7 @@ This project demonstrates API testing using Postman, providing a collection of t
 1. Postman: If you haven't already, [download and install Postman.](https://www.postman.com/downloads/)
 2. Clone the repository:
  ```console 
-  git clone https://github.com/AdritaAlam/API_Testing_with_Postman_Newman_Report.git
+  git clone 
 ```
 3. Import the Postman collection:
     - Open Postman.
@@ -66,39 +66,36 @@ This project demonstrates API testing using Postman, providing a collection of t
 ### Request Method: POST
 ### Pre-request Script:
 ```console 
-//first name
 var firstName = pm.variables.replaceIn("{{$randomFirstName}}")
-console.log(firstName)    
-pm.environment.set("firstName",firstName)
+console.log(firstName)
+pm.environment.set("firstName", firstName)
 
-//last name
 var lastName = pm.variables.replaceIn("{{$randomLastName}}")
-pm.environment.set("lastName",lastName)
+console.log(lastName)
+pm.environment.set("lastName", lastName)
 
-//total price
 var totalPrice = pm.variables.replaceIn("{{$randomInt}}")
-pm.environment.set("totalPrice",totalPrice)
+console.log(totalPrice)
+pm.environment.set("totalPrice", totalPrice)
 
-//depositpaid
 var depositPaid = pm.variables.replaceIn("{{$randomBoolean}}")
 pm.environment.set("depositPaid",depositPaid)
 
+
 //Date
+
 const moment = require('moment')
 const today = moment()
-//checkin
-var checkin = today.add(1,'d').format("YYYY-MM-DD")
-// console.log(checkin)
-pm.environment.set("checkin",checkin)
+var checkin = today.add(5, 'd').format("YYYY-MM-DD")
+pm.environment.set("checkin", checkin)
 
-// checkout
-var checkout = today.add(1,'d').format("YYYY-MM-DD")
-// console.log(checkout)
-pm.environment.set("checkout",checkout)
+var checkout = today.add(5, 'd').format("YYYY-MM-DD")
+pm.environment.set("checkout", checkout)
 
-//additional need
-const additionalNeed = ["Breakfast","Lunch","Dinner","Wifi"]
-pm.variables.set("additionalNeed",additionalNeed[Math.floor(Math.random()*additionalNeed.length)])
+
+
+
+
 
 
 
@@ -115,24 +112,24 @@ pm.variables.set("additionalNeed",additionalNeed[Math.floor(Math.random()*additi
     	"checkin" : "{{checkin}}",
     	"checkout" : "{{checkout}}"
 	},
-	"additionalneeds" : "{{additionalNeed}}"
+	"additionalneeds" : "lunch"
 }
 
 ```
   **Response Body:**
  ```console 
-  {
-    "bookingid": 1471,
+ {
+    "bookingid": 826,
     "booking": {
-        "firstname": "Dora",
-        "lastname": "Quigley",
-        "totalprice": 238,
+        "firstname": "Watson",
+        "lastname": "Feil",
+        "totalprice": 541,
         "depositpaid": false,
         "bookingdates": {
-            "checkin": "2025-02-05",
-            "checkout": "2025-02-06"
+            "checkin": "2025-02-14",
+            "checkout": "2025-02-19"
         },
-        "additionalneeds": "Dinner"
+        "additionalneeds": "lunch"
     }
 }
 ```
@@ -142,15 +139,15 @@ pm.variables.set("additionalNeed",additionalNeed[Math.floor(Math.random()*additi
 ### Response Body:
  ```console 
 {
-    "firstname": "Dora",
-    "lastname": "Quigley",
-    "totalprice": 238,
+    "firstname": "Watson",
+    "lastname": "Feil",
+    "totalprice": 541,
     "depositpaid": false,
     "bookingdates": {
-        "checkin": "2025-02-05",
-        "checkout": "2025-02-06"
+        "checkin": "2025-02-14",
+        "checkout": "2025-02-19"
     },
-    "additionalneeds": "Dinner"
+    "additionalneeds": "lunch"
 }
 ```
 ## _**3. Create A Token For Authentication.**_
@@ -167,7 +164,7 @@ pm.variables.set("additionalNeed",additionalNeed[Math.floor(Math.random()*additi
   **Response Body:**
  ```console 
 {
-    "token": "85cdeb8e0b275b1"
+    "token": "599aed80e466f8e"
 }
 ```
 
@@ -189,33 +186,28 @@ pm.environment.set("updated_lastName",updated_lastName)
 var updated_totalPrice = pm.variables.replaceIn("{{$randomInt}}")
 pm.environment.set("updated_totalPrice",updated_totalPrice)
 
-
 //depositpaid
 var updated_depositPaid = pm.variables.replaceIn("{{$randomBoolean}}")
 pm.environment.set("updated_depositPaid",updated_depositPaid)
+
 
 //Date
 const moment = require('moment')
 const today = moment()
 
 //checkin
-var updated_checkin = today.add(1,'d').format("YYYY-MM-DD")
-// console.log(checkin)
+var updated_checkin = today.add(5,'d').format("YYYY-MM-DD")
 pm.environment.set("updated_checkin",updated_checkin)
 
 // checkout
-var updated_checkout = today.add(1,'d').format("YYYY-MM-DD")
-// console.log(checkout)
+var updated_checkout = today.add(5,'d').format("YYYY-MM-DD")
 pm.environment.set("updated_checkout",updated_checkout)
 
-//additional need
-const updated_additionalNeed = ["Breakfast","Lunch","Dinner","Wifi"]
-pm.variables.set("updated_additionalNeed",updated_additionalNeed[Math.floor(Math.random()*updated_additionalNeed.length)])
 
 ```
   **Request Body:** 
  ```console 
-  {
+ {
 	"firstname" : "{{updated_firstName}}",
 	"lastname" : "{{updated_lastName}}",
 	"totalprice" : {{updated_totalPrice}},
@@ -224,22 +216,22 @@ pm.variables.set("updated_additionalNeed",updated_additionalNeed[Math.floor(Math
     	"checkin" : "{{updated_checkin}}",
     	"checkout" : "{{updated_checkout}}"
 	},
-	"additionalneeds" : "{{updated_additionalNeed}}"
+	"additionalneeds" : "lunch"
 }
 
 ```
   **Response Body:**
  ```console 
   {
-    "firstname": "Raquel",
-    "lastname": "Muller",
-    "totalprice": 933,
-    "depositpaid": true,
+    "firstname": "Gustave",
+    "lastname": "Hansen",
+    "totalprice": 471,
+    "depositpaid": false,
     "bookingdates": {
-        "checkin": "2025-02-05",
-        "checkout": "2025-02-06"
+        "checkin": "2025-02-14",
+        "checkout": "2025-02-19"
     },
-    "additionalneeds": "Dinner"
+    "additionalneeds": "lunch"
 }
 ```
 
@@ -260,7 +252,5 @@ newman run API_Testing_CRUD.postman_collection.json -e API_Testing_CRUD.postman_
 ```
 
 ## Newman Report Summary:
-![image](https://github.com/user-attachments/assets/937fdc55-5cd2-4a79-8a0b-3c9a79fd950e)
-![image](https://github.com/user-attachments/assets/1a3f5e2f-5ce8-458d-a056-eb40ede03b0e)
-![image](https://github.com/user-attachments/assets/b41f21ed-2cf8-4b0b-93aa-d8f706a46e70)
-![image](https://github.com/user-attachments/assets/40d392b9-258c-4b0c-b298-79716fa2b1ca)
+![image](https://github.com/user-attachments/assets/baae0ab2-2bb0-4a51-8427-6670ee6204ad)
+
